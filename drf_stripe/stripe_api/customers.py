@@ -185,15 +185,24 @@ def _get_or_create_stripe_user_from_user_id_email(user_id, user_email: str, cust
     :param user_id: user id
     :param str user_email: user email address
     """
-    stripe_user, created = StripeUser.objects.get_or_create(user_id=user_id, customer_id=customer_id)
-
-    if created and not customer_id:
+    try:
+        # Try to get the existing StripeUser for the user_id
+        stripe_user = StripeUser.objects.get(user_id=user_id)
+        # Check if the customer_id needs to be updated (optional)
+        if customer_id and stripe_user.customer_id != customer_id:
+            stripe_user.customer_id = customer_id
+            stripe_user.save()
+    except StripeUser.DoesNotExist:
+        # If the StripeUser doesn't exist, create it
+        stripe_user = StripeUser.objects.create(user_id=user_id, customer_id=customer_id)
+    
+    if not customer_id:
+        # If customer_id was not provided, create/retrieve Stripe customer
         customer = _stripe_api_get_or_create_customer_from_email(user_email)
         stripe_user.customer_id = customer.id
         stripe_user.save()
 
     return stripe_user
-
 
 def _stripe_api_get_or_create_customer_from_email(user_email: str):
     """
