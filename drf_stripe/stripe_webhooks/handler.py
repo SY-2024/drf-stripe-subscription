@@ -24,7 +24,7 @@ def _make_webhook_event_from_request(request: Request):
 
     return stripe.Webhook.construct_event(
         payload=request.body,
-        sig_header=request.META['HTTP_STRIPE_SIGNATURE'],
+        sig_header=request.META.get('HTTP_STRIPE_SIGNATURE'),
         secret=drf_stripe_settings.STRIPE_WEBHOOK_SECRET)
 
 
