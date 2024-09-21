@@ -148,3 +148,5 @@ NOTE*.csv
 
 .idea
 .pylintrc
+
+drf_stripe/migrations/
