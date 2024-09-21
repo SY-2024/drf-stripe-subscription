@@ -43,4 +43,4 @@ class StripeProducts(BaseModel):
 class StripeProductEventData(BaseModel):
     """Based on https://stripe.com/docs/api/products/object"""
     object: StripeProduct
-    previous_attributes: Optional[StripeProduct]
+    previous_attributes: Optional[StripeProduct] = None

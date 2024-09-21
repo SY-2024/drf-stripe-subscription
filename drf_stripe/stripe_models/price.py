@@ -56,4 +56,4 @@ class StripePrices(BaseModel):
 class StripePriceEventData(BaseModel):
     """Based on https://stripe.com/docs/api/prices/object"""
     object: StripePrice
-    previous_attributes: Optional[StripePrice]
+    previous_attributes: Optional[StripePrice] = None
