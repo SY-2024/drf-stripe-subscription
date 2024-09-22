@@ -48,4 +48,4 @@ class StripeInvoice(BaseModel):
 class StripeInvoiceEventData(BaseModel):
     """Based on https://stripe.com/docs/api/events/object#event_object-data"""
     object: StripeInvoice
-    previous_attributes: Optional[StripeInvoice]
+    previous_attributes: Optional[StripeInvoice] = None

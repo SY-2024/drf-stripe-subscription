@@ -75,4 +75,4 @@ class StripeSubscriptions(BaseModel):
 class StripeSubscriptionEventData(BaseModel):
     """Based on https://stripe.com/docs/api/events/object#event_object-data"""
     object: StripeSubscription
-    previous_attributes: Optional[StripeSubscription] = None
+    previous_attributes: Optional[Dict[str, Any]] = None
