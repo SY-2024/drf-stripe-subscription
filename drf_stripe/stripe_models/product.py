@@ -17,7 +17,7 @@ class StripeProductMetadata(BaseModel):
 
 class StripeProduct(BaseModel):
     """A single StripeProduct, see https://stripe.com/docs/api/products/object"""
-    id: Optional[str] = None
+    id: Optional[str]
     active: Optional[bool] = None
     description: Optional[str] = None
     metadata: Optional[Union[StripeProductMetadata, Dict]] = None

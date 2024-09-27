@@ -34,7 +34,7 @@ class StripePriceRecurring(BaseModel):
 
 class StripePrice(BaseModel):
     """A single StripePrice, see https://stripe.com/docs/api/prices/object"""
-    id: Optional[str] = None
+    id: Optional[str]
     active: Optional[bool] = None
     currency: Optional[StripeCurrency] = None
     metadata: Optional[Dict] = None
