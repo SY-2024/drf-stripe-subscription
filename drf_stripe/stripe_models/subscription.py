@@ -47,7 +47,7 @@ class StripeSubscriptionItems(BaseModel):
 
 class StripeSubscription(BaseModel):
     """Based on https://stripe.com/docs/api/subscriptions/object"""
-    id: str
+    id: Optional[str]
     cancel_at_period_end: Optional[bool]
     cancel_at: Optional[datetime] = None
     ended_at: Optional[datetime] = None
@@ -76,4 +76,3 @@ class StripeSubscriptionEventData(BaseModel):
     """Based on https://stripe.com/docs/api/events/object#event_object-data"""
     object: StripeSubscription
     previous_attributes: Optional[Dict[str, Any]] = None
-    request_id: Optional[str] = None

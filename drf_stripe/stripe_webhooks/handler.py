@@ -48,8 +48,6 @@ def _handle_event_type_validation_error(err: ValidationError):
 
 def handle_webhook_event(event):
     """Perform actions given Stripe Webhook event data."""
-    if 'request' not in event or 'id' not in event['request']:
-        event['request'] = {'id': None}
 
     try:
         e = StripeEvent(event=event)
@@ -87,4 +85,3 @@ def handle_webhook_event(event):
 
     elif event_type is EventType.PRICE_DELETED:
         _handle_price_event_data(e.event.data)
-   
