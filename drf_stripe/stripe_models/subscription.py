@@ -47,7 +47,7 @@ class StripeSubscriptionItems(BaseModel):
 
 class StripeSubscription(BaseModel):
     """Based on https://stripe.com/docs/api/subscriptions/object"""
-    id: Optional[str] = None
+    id: Optional[str]
     cancel_at_period_end: Optional[bool]
     cancel_at: Optional[datetime] = None
     ended_at: Optional[datetime] = None
